@@ -2,17 +2,16 @@ const divGrid = document.querySelector('.grid');
 let gridSize = 16;
 let colorMode = 'monochrome';
 
-const buttonSize = document.querySelector('.button-size');
 const buttonMono = document.querySelector('.button-mono');
 const buttonRGB = document.querySelector('.button-rgb');
 const buttonClear = document.querySelector('.button-clear');
+const buttonSize = document.querySelector('.button-size');
+const sliderRange = document.getElementById('slider-range');
 
-// getting user input for grid size and creating such grid
-buttonSize.addEventListener('click', () => {
-    gridSize = prompt('Enter number of squares per side (from 2 to 100):');
-    while (gridSize > 100 || gridSize < 2) {
-        gridSize = prompt('Limits: minimum 2, maximum 100. Please choose different value:')
-    }
+// getting slider value for grid size and creating such grid
+sliderRange.addEventListener('input', () => {
+    gridSize = sliderRange.value;
+    changeSliderText(gridSize);
     deleteGrid();
     createGrid(gridSize);
     setColor(colorMode);
@@ -72,6 +71,11 @@ function deleteGrid() {
     elements.forEach(element => {
         element.remove();
     })
+}
+
+function changeSliderText(number) {
+    const text = document.getElementById('slider-value');
+    text.textContent = number + 'x' + number;
 }
 
 createGrid(gridSize);
