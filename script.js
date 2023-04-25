@@ -75,7 +75,7 @@ function deleteGrid() {
 
 function changeSliderText(number) {
     const text = document.getElementById('slider-value');
-    text.textContent = number + 'x' + number;
+    text.textContent = number + ' x ' + number;
 }
 
 createGrid(gridSize);
